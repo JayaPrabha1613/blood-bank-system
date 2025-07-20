@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blood Bank Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🩸 Blood Bank Management</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a href="stock.html">Stock</a>
+      <a href="search.html">Search</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Welcome!</h2>
+    <p>Manage blood donors, view stock, and search blood groups.</p>
+  </main>
+
+  <script>
+    const defaultDonors = [
+      { name: "Ravi Kumar", age: 25, blood: "A+" },
+      { name: "Sita Devi", age: 30, blood: "B+" },
+      { name: "John Doe", age: 22, blood: "O+" },
+      { name: "Priya Sharma", age: 28, blood: "AB+" },
+      { name: "Akash Singh", age: 35, blood: "A+" },
+      { name: "Neha Verma", age: 29, blood: "O+" }
+    ];
+    if (!localStorage.getItem("donors")) {
+      localStorage.setItem("donors", JSON.stringify(defaultDonors));
+    }
+  </script>
+</body>
+</html>

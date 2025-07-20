@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register Donor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Register New Donor</h2>
+  <form id="donorForm">
+    <input type="text" placeholder="Full Name" id="name" required>
+    <input type="number" placeholder="Age" id="age" required>
+    <select id="bloodGroup" required>
+      <option value="">Select Blood Group</option>
+      <option>A+</option><option>B+</option>
+      <option>AB+</option><option>O+</option>
+    </select>
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    document.getElementById('donorForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const donor = {
+        name: document.getElementById('name').value,
+        age: document.getElementById('age').value,
+        blood: document.getElementById('bloodGroup').value
+      };
+      let donors = JSON.parse(localStorage.getItem('donors')) || [];
+      donors.push(donor);
+      localStorage.setItem('donors', JSON.stringify(donors));
+      alert('Donor registered successfully!');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

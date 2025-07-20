@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blood Stock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Available Blood Stock</h2>
+  <ul id="stockList"></ul>
+
+  <script>
+    const donors = JSON.parse(localStorage.getItem('donors')) || [];
+    const stock = {};
+
+    donors.forEach(d => {
+      stock[d.blood] = (stock[d.blood] || 0) + 1;
+    });
+
+    const list = document.getElementById('stockList');
+    for (let type in stock) {
+      const li = document.createElement('li');
+      li.textContent = `${type}: ${stock[type]} unit(s)`;
+      list.appendChild(li);
+    }
+  </script>
+</body>
+</html>

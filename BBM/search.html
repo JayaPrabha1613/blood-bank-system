@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Donor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Search Donor by Blood Group</h2>
+  <select id="searchGroup">
+    <option value="">Select Group</option>
+    <option>A+</option><option>B+</option>
+    <option>AB+</option><option>O+</option>
+  </select>
+  <button onclick="search()">Search</button>
+  <ul id="resultList"></ul>
+
+  <script>
+    const defaultDonors = [
+      { name: "Ravi Kumar", age: 25, blood: "A+" },
+      { name: "Sita Devi", age: 30, blood: "B+" },
+      { name: "John Doe", age: 22, blood: "O+" },
+      { name: "Priya Sharma", age: 28, blood: "AB+" },
+      { name: "Akash Singh", age: 35, blood: "A+" },
+      { name: "Neha Verma", age: 29, blood: "O+" }
+    ];
+    if (!localStorage.getItem("donors")) {
+      localStorage.setItem("donors", JSON.stringify(defaultDonors));
+    }
+
+    function search() {
+      const group = document.getElementById('searchGroup').value;
+      const donors = JSON.parse(localStorage.getItem('donors')) || [];
+      const results = donors.filter(d => d.blood === group);
+      const list = document.getElementById('resultList');
+      list.innerHTML = '';
+
+      if (results.length === 0) {
+        list.innerHTML = '<li>No donors found.</li>';
+      } else {
+        results.forEach(d => {
+          const li = document.createElement('li');
+          li.textContent = `${d.name}, Age: ${d.age}`;
+          list.appendChild(li);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
